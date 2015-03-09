@@ -58,15 +58,13 @@ function facebook_theme()
  */
 function theme_facebook_add_like_button()
 {
-  $output = '<fb:like href="http://myDrupalSite.com" send="true" width="450" show_faces="true"></fb:like>';
- 
+  $output = '<fb:like href="http://myDrupalSite.com" 
+  send="true" width="450" show_faces="true"></fb:like>'; 
   return $output;
 }
 /*Implementation Documentation: add the code taken from 
 * http://developers.facebook.com/docs/reference/plugins/like
-* 
 */
-
 
 ?>
 
