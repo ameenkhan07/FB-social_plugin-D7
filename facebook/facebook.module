@@ -1,5 +1,8 @@
+<!-- XML namespacetag -->
 <html xmlns:fb="http://ogp.me/ns/fb#">
 
+<!-- Following FB javascript SDk obtained from:
+http://developers.facebook.com/docs/reference/plugins/like/ -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -8,24 +11,32 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<!-- 
-<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/"
- data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div> -->
 
+<!-- Main module code begins -->
 <?php
-/**
+
+/*
  * Implements hook_node_view().
  *
  * Returns the renderable view of our nodes (pages or articles).
  * We want to moddify the code so that we add the like button
  * to our pages.
  */
+
 function facebook_node_view($node, $view_mode, $langcode)
 {
   $node->content['facebook'] = array(
     '#markup' => theme('facebook_add_like_button'),
   );
 }
+/*
+ * Implementation Documentation: using this hook, we can add custom code
+ * facebook_node_view <-> hook_node_view 
+ * Parameters:
+ * $node: node data, to be rendered afterwards
+ * $view_mode: display specifications about the node
+ * $langcode: language for rendering
+*/ 
 
 /**
  * Implements hook_theme().
@@ -38,6 +49,9 @@ function facebook_theme()
     'facebook_add_like_button' => array('variables' => NULL),
   );
 }
+/* Implementation Documentation: hook to register implementation theme function 
+(what does that mean? guess will learn in a few days time :/) 
+*/ 
 
 /**
  * Function to add the desired code to our page.
@@ -48,6 +62,10 @@ function theme_facebook_add_like_button()
  
   return $output;
 }
+/*Implementation Documentation: add the code taken from 
+* http://developers.facebook.com/docs/reference/plugins/like
+* 
+*/
 
 
 ?>
